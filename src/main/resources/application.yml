@@ -23,17 +23,19 @@ spring:
     username: ${MQ_USERNAME:guest}
     password: ${MQ_PASSWORD:guest}
     ssl:
-      enabled: true
+      enabled: false
   application.name: config-server
   cloud:
     config:
       server:
         git:
-          ignore-local-ssh-settings: true
+          ignore-local-ssh-settings: false
           default-label: master
           uri: ${GIT_REPO_URL}
           username: ${GIT_ID}
           password: ${GIT_PERSONAL_ACCESS_TOKEN}
+          skip-ssl-validation: true
+
     bus:
       enabled: true
 
@@ -42,3 +44,8 @@ management:
     web:
       exposure:
         include: "*"
+
+rabbitmq:
+  queue.name: ${RABBIT_QUEUE:sample.queue}
+  exchange.name: ${RABBIT_EXCHANGE:sample.exchange}
+  routing.key: ${RABBIT_ROUTING_KEY:sample.key}

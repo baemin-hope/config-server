@@ -1,0 +1,44 @@
+server:
+  port: ${DOCKER_SERVER_PORT:8888}
+  address: ${DOCKER_SERVER_IP:localhost}
+  shutdown: graceful
+eureka:
+  instance:
+    hostname: ${EUREKA_HOST:localhost}
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${EUREKA_PORT:8761}/eureka/
+
+spring:
+  security:
+    user:
+      name: ${ADMIN_USERNAME:khope}
+      password: ${ADMIN_PASSWORD:Esperer123!}
+      roles: [ ADMIN ]
+  rabbitmq:
+    host: ${MQ_HOSTNAME:localhost}
+    port: ${MQ_PORT:15672}
+    username: ${MQ_USERNAME:khope}
+    password: ${MQ_PASSWORD:Esperer123!@}
+    ssl:
+      enabled: true
+  application.name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          ignore-local-ssh-settings: true
+          default-label: main
+          uri: ${GIT_REPO_URL}
+          username: ${GIT_ID}
+          password: ${GIT_PERSONAL_ACCESS_TOKEN}
+    bus:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

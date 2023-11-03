@@ -30,7 +30,7 @@ spring:
       server:
         git:
           ignore-local-ssh-settings: false
-          default-label: master
+          default-label: main
           uri: ${GIT_REPO_URL}
           username: ${GIT_ID}
           password: ${GIT_PERSONAL_ACCESS_TOKEN}

@@ -19,9 +19,9 @@ spring:
       roles: [ ADMIN ]
   rabbitmq:
     host: ${MQ_HOSTNAME:localhost}
-    port: ${MQ_PORT:15672}
-    username: ${MQ_USERNAME:khope}
-    password: ${MQ_PASSWORD:Esperer123!@}
+    port: ${MQ_PORT:5672}
+    username: ${MQ_USERNAME:guest}
+    password: ${MQ_PASSWORD:guest}
     ssl:
       enabled: true
   application.name: config-server
@@ -30,7 +30,7 @@ spring:
       server:
         git:
           ignore-local-ssh-settings: true
-          default-label: main
+          default-label: master
           uri: ${GIT_REPO_URL}
           username: ${GIT_ID}
           password: ${GIT_PERSONAL_ACCESS_TOKEN}
